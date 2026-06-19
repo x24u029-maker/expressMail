@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIテスト</title>
+    <style>
+        main ,body{
+            position: relative;
+            margin: 0;
+            padding: 10px;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #hpDiv{
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            transform: translate(-25%, -25%);
+            width: 80%;
+            height: 20%;
+            z-index: 3;
+        }
+        #hpGage {
+            position: absolute;
+            left: 8%;
+            top: 50%;
+            width: 53%;
+            height: 28%;
+            border: 1px solid #000;
+            overflow: hidden;
+            z-index: 2;
+            background-image: url(images/hpGage3.png);
+            background-size: cover;
+
+        }
+        #hpCover{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            background-image: url(images/hpGage1.png);
+            background-size: cover;
+        }
+
+        #hpScale {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            
+            background-size: auto 100%;
+            background-repeat: repeat-x;
+            background-position: right center;
+            transition: 0.2s;
+            border-left: #000 solid 2px;
+        }
+
+        #hpTxt {
+            position: absolute;
+            margin: 0;
+            bottom: 0.5%;
+            right: 2%;
+            text-align: right;
+            z-index: 2;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="hpDiv">
+        <div id="hpGage">
+            <p id="hpTxt"></p>
+        </div>    
+        <div id="hpCover"></div>
+    </div>
+    <p>
+        <input type="button" id="minus" value="-10">
+        <input type="button" id="minusNum" value="-">
+        <input type="button" id="plusNum" value="+">
+        <input type="button" id="plus" value="+10">
+    </p>
+</body>
+<script>
+    const hpGage = document.getElementById("hpGage");
+    const pBtn = document.getElementById("plusNum");
+
+    const ppBtn = document.getElementById("plus");
+    const mmBtn = document.getElementById("minus");
+    const mBtn = document.getElementById("minusNum");
+
+
+    const hpTxt = document.getElementById("hpTxt");
+
+    const limitHp = 10;
+    let hp = 0;
+    let scaleDiv;
+    function setHp() {
+        scaleDiv = document.createElement("div");
+        scaleDiv.style.width = 100 + "%";
+        scaleDiv.id = "hpScale";
+        hpGage.appendChild(scaleDiv);
+        updateRender();
+    }
+    setHp();
+
+    pBtn.addEventListener("click", function () {
+        updateHp(1);
+    });
+
+    mBtn.addEventListener("click", function () {
+        updateHp(-1);
+    });
+
+    ppBtn.addEventListener("click", function () {
+        updateHp(10);
+    });
+
+    mmBtn.addEventListener("click", function () {
+        updateHp(-10);
+    });
+
+    function updateHp(num) {
+        if (hp + num > limitHp) {
+            hp = limitHp;
+        } else
+            if (hp + num < 0) {
+                hp = 0;
+                console.log("dead");
+                return;
+            } else {
+
+                hp += num;
+
+            }
+
+            //scaleDiv.style.transition = `${Math.abs(num) * 0.05}s`;
+        updateRender();
+
+    };
+
+    function updateRender() {
+        const width = Math.floor((hp / limitHp) * 100);
+        //const colorNum = Math.floor(255 * ( width / 100));
+        //scaleDiv.style.width = width + "%";
+        scaleDiv.style.transform = `translate(${100 - width}%)`;
+        
+        //scaleDiv.style.backgroundColor = `rgb(${255 - colorNum},${colorNum},20)`;
+        let colorTxt;
+        if (width <= 30) {
+            colorTxt = "#f22";
+        } 
+         else {
+            colorTxt = "#2f2";
+        }
+        scaleDiv.style.backgroundColor = colorTxt;
+
+        if (hp <= 0) {
+            hpTxt.innerHTML = "dead";
+        } else {
+            hpTxt.innerHTML = `${hp}/${limitHp}`;
+        }
+
+    }
+</script>
+
+</html>

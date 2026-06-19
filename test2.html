@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .display {
+            display: flex;
+            height: 100px;
+            border: 1px solid #000;
+            background-color: #0f0;
+        }
+
+        .numImg {
+            height: 100px;
+            width: 50px;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="number" id="num">
+    <div class="display" id="display1"></div>
+    <input type="button" id="sBtn" value="start">
+    <div class="display" id="display2"></div>
+
+</body>
+<script>
+    let num1 = null;
+    const numDom = document.getElementById("num");
+    const display1Dom = document.getElementById("display1");
+
+    const display2Dom = document.getElementById("display2");
+    const sBtn = document.getElementById("sBtn");
+    numDom.addEventListener("input", function (e) {
+        num1 = e.target.value;
+        console.log(num1);
+        setNumImg(display1Dom, num1);
+    });
+
+    let timer = null;
+    let num2 = 0;
+    let sTime = null;
+    let now = null;
+    sBtn.addEventListener("click", function () {
+        if (timer === null) {
+            sTime = performance.now();
+            console.log(sTime);
+            timer = setInterval(function () {
+                num2+= 9;
+                setNumImg(display2Dom, num2)
+            },1);
+        }
+    })
+
+    function setNumImg(dom, num) {
+        dom.innerHTML = "";
+        const digits = String(num);
+
+        for (const d of digits) {
+            const numImg = document.createElement("div");
+            numImg.classList.add("numImg");
+            numImg.style.backgroundImage = `url(images/text/text_${d}.png)`;
+            dom.appendChild(numImg);
+        }
+    }
+</script>
+
+</html>

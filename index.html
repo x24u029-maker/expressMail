@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/result.css">
+    <title>総合課題後期第三版</title>
+</head>
+
+<body>
+    <div id="window">
+        <div id="setumei">
+            <p>端っこの家（ゴールまで目指そう）</p>
+            <h1>操作説明</h1>
+            <p>wasd：移動</p>
+            <p>左クリック：射撃</p>
+            <p>ホイールのクリック：角度を変える
+                ーーー左クリック：角度を変えて射撃
+            </p>
+            <p>q：時間がゆっくりに</p>
+            <p>ゆっくりな時に敵にカーソルを合わせる：ロックオン
+                ーーー時間ゆっくり解除時に一斉射撃
+            </p>
+
+        </div>
+        <div class="modeWindow" id="homeWindow">
+            <div id="home">
+                <div id="title">
+                    <span>速達</span><p>sokutatsu</p>
+                </div>
+                <ul id="homeSelect">
+                    <li class="homeSelect" id="nextBtn">start</li>
+                    <li class="homeSelect" id="rankingBtn">ranking</li>
+                    <li class="homeSelect" id="botu">没</li>
+                </ul>
+                <div id="setName">
+                    <div class="playerImg"></div>
+                    <p>
+                    <span id="nameSpan"></span>
+                    </p>
+                    <p>
+                        <input type="button" id="backBtn" value="戻る">
+                        <input type="button" id="renameBtn" value="名前変更">
+                        <input type="button" id="startBtn" value="開始">
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modeWindow" id="playWindow">
+            <div  id="leftTopUI" class="playOnly UI">
+                <div id="scorePoint">タダ働き</div>
+                <div id="time"></div>
+            </div>
+
+            <div class="playOnly" id="hpDiv">
+                <div id="hpGage">
+                    <div id="hpScale"></div>
+                    <p id="hpTxt"></p>
+                </div>    
+                <div id="hpCover">
+                    <p id="hpGageName">確殺</p>
+                </div>
+                
+            </div>
+
+            <div class="playOnly" id="lifePoint"></div>
+            
+            <div id="camera">
+                <div id="scope"></div>
+                <div id="map">
+
+                    <div class="map-layer" id="background"></div>
+                    <div class="map-layer" id="groundInfo"></div>
+                    <div class="map-layer" id="effectInfo"></div>
+                    <div id="player"></div>
+
+
+                </div>
+            </div>
+            <div id="cameraBackGround"></div>
+        </div>
+        <div id="slowFilter"></div>
+
+
+        <!--リザルト表示-->
+        <div class="modeWindow" id="resultWindow">
+            <div id="resultBackGround1"></div>
+            <div id="resultDom">
+                <div id="result">
+                    <h1 id="gameClearH1"></h1>
+                    <div id="playerImg"></div>
+                    
+                    <div id="resultInfo">
+                        <div class="resultInfo" id="resultMapName">ステージ名</div>
+                        <div class="resultInfo" id="resultTime">経過時間</div>
+                        <div class="resultInfo" id="resultHp">残り体力</div>
+                        <div class="resultInfo" id="resultScore">総スコア</div>
+
+                    </div>
+                    <div id="resultRank"></div>
+
+                </div>
+                <div id="resultOther">
+                    <div id="resultRanking">
+
+                    </div>
+                    <p id="resultOption">
+                        <input type="button" class="resultBtn" id="retry" value="retry">
+                        <input type="button" class="resultBtn" id="end" value="end">
+                    </p>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+    <!--
+    <ul id="optionList">
+
+    </ul>
+    <h2>wasdで移動、enterで射撃、」でスコープ</h2>
+    <img src="images/keyboard.png" alt="">
+
+    -->
+    <script type="module" src="js/home.js"></script>
+    <script type="module" src="js/manager.js"></script>
+
+
+</body>
+
+</html>
