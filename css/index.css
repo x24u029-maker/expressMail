@@ -1,0 +1,352 @@
+@charset "UTF-8";
+
+main,body{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+
+#window {
+    position: relative;
+
+    height: 100vh;
+    overflow: hidden;
+}
+
+.modeWindow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+#slowFilter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+
+}
+
+
+/* カメラ領域 */
+#camera {
+    z-index: 999;
+
+    width: 100%;
+    height: 100%;
+
+
+
+    border: 1px solid #000;
+    overflow: hidden;
+    /* カメラなので必須 */
+    position: relative;
+    /* map を内部で絶対配置できるようにする */
+
+    backdrop-filter: grayscale(0%);
+    /* 追加 */
+}
+
+/* オプションリスト */
+#optionList {
+    grid-column: 2 / 3;
+    grid-row: 1/2;
+}
+
+#background {
+    width: 10000px;
+    height: 10000px;
+    background-color: #aaf;
+}
+
+#playWindow {
+    position: relative;
+}
+
+#cameraBackGround {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #aaf;
+}
+
+#leftTopUI {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    z-index: 1000;
+    height: 20%;
+    min-height: 300px;
+    width: 30%;
+    min-width: 300px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+}
+
+#lifePoint {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 100px;
+    height: 50px;
+    border: #000 solid 1px;
+    font-size: 32px;
+    text-align: center;
+    background-color: #ffffff;
+    z-index: 1000;
+}
+
+#scorePoint {
+    width: 100%;
+    height: 10%;
+    min-height: 50px;
+    border: #000 solid 1px;
+    font-size: 32px;
+}
+
+#time {
+    width: 100%;
+    height: 10%;
+    min-height: 50px;
+    border: #000 solid 1px;
+    font-size: 32px;
+
+    z-index: 1000;
+
+}
+
+
+#energyWidget {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    right: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+    border: #000 solid;
+    z-index: 1000;
+    padding: 10px;
+    align-items: center;
+    font-size: 46px;
+    text-align: left;
+    background-color: #fff;
+}
+
+#energy {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: #000 solid 1px;
+    position: absolute;
+    bottom: 10px;
+    right: 1%;
+
+    width: 15%;
+    aspect-ratio: 1/1;
+
+    z-index: 1000;
+}
+
+#scope {
+    position: absolute;
+    display: none;
+
+    width: 100px;
+    aspect-ratio: 1/1;
+    background-color: rgba(255, 0, 0, 0.3);
+    pointer-events: none;
+    background-size: cover;
+    z-index: 1005;
+}
+
+
+/* マップ本体 */
+#map {
+    position: absolute;
+    /* camera 内で絶対配置して left/top で移動 */
+
+}
+
+/* レイヤー */
+.map-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* 地面情報 */
+#groundInfo {
+    position: absolute;
+
+}
+
+/* 地面タイル */
+.tile {
+    position: absolute;
+
+    background-size: cover;
+}
+
+.enemy {
+    position: absolute;
+    background-size: cover;
+}
+
+.effect {
+    background-size: cover;
+}
+
+/* プレイヤー */
+#player {
+    position: absolute;
+    /* map 内で絶対配置 */
+    width: 50px;
+    height: 50px;
+
+    font-size: 32px;
+    color: aqua;
+    text-align: center;
+    background-size: cover;
+}
+
+
+#hpDiv{
+    position: absolute;
+    top: 1%;
+    right: 0%;
+    margin: 0;
+    width: 20%;
+    min-width: 400px;
+    aspect-ratio: 4/1;
+    z-index: 10000;
+}
+#hpGage {
+    position: absolute;
+    left: 8%;
+    top: 50%;
+    width: 53%;
+    height: 28%;
+    border: 1px solid #000;
+    overflow: hidden;
+    z-index: 1000;
+    background-image: url(../images/hpGage3.png);
+    background-size: cover;
+    
+    background-position: bottom;
+
+}
+#hpCover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/hpGage1.png);
+    background-size: cover;
+    background-position: bottom;
+}
+
+#hpScale {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+    background-position: right center;
+    transition: 0.2s;
+    border-left: #000 solid 2px;
+}
+
+#hpTxt {
+    position: absolute;
+    margin: 0;
+    bottom: 0.5%;
+    right: 2%;
+    text-align: right;
+    z-index: 2;
+    font-size: 22px;
+    color: #fff;
+}
+
+/* センサー */
+.sensor {
+    position: absolute;
+    /* プレイヤーに追従させる */
+    background-color: red;
+    opacity: 0.6;
+}
+
+#bottom,
+#top {
+    width: 40px;
+    height: 10px;
+}
+
+#left,
+#right {
+    width: 5px;
+    height: 45px;
+}
+
+.bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    position: absolute;
+
+}
+
+#background,
+#groundInfo {
+    filter: grayscale(00%);
+}
+
+
+
+#player,
+#lifePoint,
+#energyWidget,
+#energyBar {
+    filter: none;
+
+}
+
+.scoreDom{
+
+    position :absolute;
+    width : 50px;
+    height:30px;
+    text-align:center;
+    font-size: 32px;
+    
+    transition : 0.9s;    
+}
+
+#hpGageName{
+    position: absolute;
+    top: -30%;
+    right: 40%;
+    display: flex;
+    justify-content: end;
+    font-size: 32px;
+    font-weight: 1000;
+}
+#setumei{
+    padding: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1010;
+    color: #fff;
+    background-color: rgba(0, 0,0,0.3);
+}
